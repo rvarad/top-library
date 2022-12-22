@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Library</title>
+    <link rel="stylesheet" href="./style.css">
+    <script defer src="./script.js"></script>
+</head>
+<body>
+    <div class="left">
+        <div class="logo">
+            <h1>Library</h1>
+            <p class="projectinfo">
+                this is the project information
+            </p>
+        </div>
+        <div class="entryform">
+            <form action="#">
+                <fieldset>
+                    <div class="datainput">
+                        <label for="booktitle"></label>
+                        <input type="text" name="title of the book" id="booktitle" placeholder="Title of the book">
+                    </div>
+                    <div class="datainput">
+                        <label for="author"></label>
+                        <input type="text" name="author of the book" id="author" placeholder="Author of the book">
+                    </div>
+                    <div class="datainput">
+                        <label for="pages"></label>
+                        <input type="number" name="total number of pages" id="pages" placeholder="Total number of pages in the book">
+                    </div>
+                    <div class="datainput">
+                        <input type="checkbox" name="read status" id="status">
+                        <label for="status">Read status of the book</label>
+                    </div>
+                </fieldset>
+                <input type="submit" value="Add the book">
+            </form>
+        </div>
+    </div>
+    <div class="libraryinfo">  
+        <div class="numofbooks">Number of books <em>READ</em></div>
+        <div class="numofbooks">Number of books <em>UNREAD</em></div>
+        <div class="numofbooks"><em>TOTAL</em> number of books</div>
+    </div>
+    <div class="deletebtn">
+        <button id="deleteall">DELETE ALL</button>
+    </div>
+    <div class="librarydisplay">
+        <h3>My Collection</h3>
+    </div>
+</body>
+</html>
