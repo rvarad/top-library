@@ -14,42 +14,50 @@
             <h1>Library</h1>
             <p class="projectinfo">
                 this is the project information
+                i wanna style this in a terminal kind of way. hopefully i will be able to pull htis through.
             </p>
         </div>
         <div class="entryform">
             <form action="#">
-                <fieldset>
-                    <div class="datainput">
+                <div class="formdata">
+                    <div class="inputfield">
                         <label for="booktitle"></label>
                         <input type="text" name="title of the book" id="booktitle" placeholder="Title of the book">
                     </div>
-                    <div class="datainput">
+                    <div class="inputfield">
                         <label for="author"></label>
                         <input type="text" name="author of the book" id="author" placeholder="Author of the book">
                     </div>
-                    <div class="datainput">
+                    <div class="inputfield">
                         <label for="pages"></label>
                         <input type="number" name="total number of pages" id="pages" placeholder="Total number of pages in the book">
                     </div>
-                    <div class="datainput">
+                    <div class="inputfield">
                         <input type="checkbox" name="read status" id="status">
                         <label for="status">Read status of the book</label>
                     </div>
-                </fieldset>
+                </div>
                 <input type="submit" value="Add the book">
             </form>
         </div>
+        <div class="myself">
+            Brought to you by <a href="https://github.com/rvarad" target="_blank">rvarad</a> | <a href="" target="_blank">Source</a>
+        </div>
     </div>
-    <div class="libraryinfo">  
-        <div class="numofbooks">Number of books <em>READ</em></div>
-        <div class="numofbooks">Number of books <em>UNREAD</em></div>
-        <div class="numofbooks"><em>TOTAL</em> number of books</div>
-    </div>
-    <div class="deletebtn">
-        <button id="deleteall">DELETE ALL</button>
-    </div>
-    <div class="librarydisplay">
-        <h3>My Collection</h3>
+    <div class="right">
+        <div class="righttop">
+            <div class="libraryshortinfo">  
+                <div class="numofbooks">Number of books <em>READ</em>:<span id="readbooks">0</span></div>
+                <div class="numofbooks">Number of books <em>UNREAD</em>:<span id="unreadbooks">0</span></div>
+                <div class="numofbooks"><em>TOTAL</em> number of books:<span class="totalbooks">0</span></div>
+            </div>
+            <div class="deletebtn">
+                <button id="deleteall">DELETE ALL</button>
+            </div>
+        </div>
+        <div class="librarydisplay">
+            <h3>My Collection</h3>
+        </div>
     </div>
 </body>
 </html>
