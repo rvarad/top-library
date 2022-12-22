@@ -1,0 +1,54 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.left{
+    background-color: gray;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.formdata {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input {
+    width: 35vw;
+}
+
+.myself {
+    align-self: center;
+}
+
+#status {
+    width: auto;
+}
+
+.right {
+    display: flex;
+    flex-direction: column;
+}
+
+.righttop {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.libraryshortinfo {
+    display: flex;
+}
+
