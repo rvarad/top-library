@@ -18,26 +18,26 @@
             </p>
         </div>
         <div class="entryform">
-            <form action="#">
+            <form>
                 <div class="formdata">
                     <div class="inputfield">
-                        <label for="booktitle"></label>
-                        <input type="text" name="title of the book" id="booktitle" placeholder="Title of the book">
+                        <label for="bookTitle"></label>
+                        <input type="text" name="title of the book" id="bookTitle" placeholder="Title of the book" value="">
                     </div>
                     <div class="inputfield">
-                        <label for="author"></label>
-                        <input type="text" name="author of the book" id="author" placeholder="Author of the book">
+                        <label for="BookAuthor"></label>
+                        <input type="text" name="author of the book" id="bookAuthor" placeholder="Author of the book" value="">
                     </div>
                     <div class="inputfield">
-                        <label for="pages"></label>
-                        <input type="number" name="total number of pages" id="pages" placeholder="Total pages in the book">
+                        <label for="bookPages"></label>
+                        <input type="number" name="total number of pages" id="bookPages" placeholder="Total pages in the book" value="">
                     </div>
                     <div class="inputfield">
-                        <input type="checkbox" name="read status" id="status">
-                        <label for="status">Read status of the book</label>
+                        <input type="checkbox" name="read status" id="bookStatus" value="unread">
+                        <label for="bookStatus">Read status of the book</label>
                     </div>
                 </div>
-                <input type="submit" value="Add the book" id="submitform">
+                <button id="submitForm" type="submit">Add the book</button>
             </form>
         </div>
         <div class="myself">
@@ -57,6 +57,7 @@
         </div>
         <div class="librarydisplay">
             <h3>My Collection</h3>
+            <div class="display"></div>
         </div>
     </div>
 </body>
