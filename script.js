@@ -21,11 +21,19 @@ addBookBtn.addEventListener('click', () => {
 	reset();
 });
 
+function changeStatus () {
+	if (bookStatus.checked === true) {
+		bookStatus.value = 'read';
+	} else {
+		bookStatus.value = 'unread';
+	}
+}
+
 function reset () {
 	bookTitle.value = '';
 	bookAuthor.value = '';
 	bookPages.value = '';
-	bookStatus.value = '';
+	bookStatus.checked = false;
 }
 
 function Book(title, author, pages, status) {
