@@ -1,62 +1,238 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css2?family=Castoro+Titling&family=Montserrat&family=Playfair+Display&display=swap');
+
+:root {
+	--beige: rgba(245, 245, 220, 0.61);
+	--beige0: rgba(245, 245, 220, 0);
 }
 
-body{
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    flex-wrap: nowrap;
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	/* color: white; */
+	font-family: 'Playfair Display', serif;
 }
 
-.left{
-    background-color: gray;
-    height: 100%;
-    width: 35%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
+body {
+	height: 100vh;
+	width: 100vw;
+	background: fixed url(./peakpx.jpg) center/100% 100% no-repeat;
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: column;
+}
+
+.main {
+	height: 90%;
+	width: 100%;
+	display: flex;
+}
+
+.left {
+	margin: 6rem 0rem 4rem 0rem;
+	background-color: var(--beige);
+	color: white;
+	border-radius: 0px 40px 40px 0px;
+	box-shadow: 10px 10px 10px black;
+	min-height: 50%;
+	width: 30%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.header h1 {
+	font-size: 55px;
+	font-family: 'Castoro Titling', cursive;
+}
+
+.header h1 span {
+	color: black;
+	text-shadow: 0px 2px 5px;
+}
+
+.entryform {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 .formdata {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+	width: 300px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+}
+
+.inputfield input, #checkBox {
+	margin: 5px;
+	background-color: var(--beige0);
+	color: black;
+	font-size: large;
 }
 
 input {
-    width: 100%;
+	padding: 2px 10px;
+	width: 300px;
+	height: 35px;
+	border: none;
+	border-bottom: 2px solid blue;
+	border-radius: 20px;
+}
+
+#checkBox {
+	margin: 0px 5px 5px 5px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap: 5px;
 }
 
 #bookStatus {
-    width: auto;
+	width: 25px;
+}
+
+#checkBox label {
+	color: black;
+}
+
+input:focus {
+	outline: none;
+	border: none;
+	border-bottom: 2px solid blue;
+	border-radius: 5px;
 }
 
 #submitForm {
-    width: auto;
-}
-
-.myself {
-    align-self: center;
+	width: 150px;
+	height: 40px;
+	background-color: rgb(61, 61, 61);
+	color: white;
+	font-size: large;
+	border-radius: 20px;
 }
 
 .right {
-    width: 65%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+	width: 70%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 35px;
 }
 
-.righttop {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
+.right h3 {
+	font-size: 35px;
+	color: white;
 }
 
-.libraryshortinfo {
-    display: flex;
+.display {
+	width: 85%;
+	height: 78%;
+	padding: 50px 20px;
+	background-color: var(--beige);
+	box-shadow: 15px 15px 15px rgb(0, 0, 0);
+	border-radius: 25px;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 50px;
+	justify-content: center;
+	scroll-behavior: smooth;
+	scroll-snap-type: y mandatory;
+	scroll-padding-top: 50px;
+	overflow: auto;
+	font-size: 20px;
 }
 
+.display::-webkit-scrollbar {
+	width: 0px;
+}
+
+.display .card {
+	background-color: saddlebrown;
+	border-top: 5px solid;
+	border-bottom: 5px solid;
+	border-right: 5px solid;
+	border-left: 2px dotted;
+	border-radius: 5px 15px 15px 5px;
+	padding: 20px;
+	height: 100%;
+	width: 40%;
+	scroll-snap-align: start;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+}
+
+.display .card:hover {
+	box-shadow: 5px 5px 5px 5px;
+}
+
+.card .title {
+	font-size: 30px;
+	font-weight: 1000;
+	text-align: center;
+	color: rgb(250, 205, 5);
+	text-shadow: 0px 2px 5px;
+}
+
+.card .author {
+	font-style: italic;
+	text-align: right;
+	color: snow;
+}
+
+.card .pages {
+	color: rgb(248, 199, 176);
+}
+
+.display .card .mods {
+	height: 30%;
+	width: 60%;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: repeat(2, 1fr);
+	column-gap: 10px;
+	row-gap: 5px;
+}
+
+.mods button {
+	border-radius: 15px;
+	border: none;
+	background-color: rgba(128, 128, 128, 0.411);
+}
+
+.mods .status {
+	grid-column: 1 / 3;
+	grid-row: 1 / 2;
+	font-size: 20px;
+	font-weight: bolder;
+	background-color: lightgreen;
+	color: darkgreen;
+	text-shadow: 2px 1px 3px green;
+}
+
+.mods .remove, .mods .edit {
+	font-size: 28px;
+	color: red;
+}
+
+.footer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 10%;
+	color: var(--beige);
+}
+
+.footer .credits a {
+    font-family: 'Montserrat', sans-serif;
+    font-size: larger;
+    color: white;
+}
