@@ -170,10 +170,11 @@ input:focus {
 }
 
 .display .card:hover {
-	box-shadow: 5px 5px 5px 5px;
+	box-shadow: 15px 15px 10px 5px;
 }
 
 .card .title {
+	height: 40%;
 	font-size: 30px;
 	font-weight: 1000;
 	text-align: center;
@@ -212,14 +213,30 @@ input:focus {
 	grid-row: 1 / 2;
 	font-size: 20px;
 	font-weight: bolder;
+}
+
+.mods .status.read {
 	background-color: lightgreen;
 	color: darkgreen;
 	text-shadow: 2px 1px 3px green;
 }
 
+.mods .status.unread {
+	background-color: rgb(243, 132, 132);
+	color: darkred;
+	text-shadow: 2px 1px 3px red;
+}
+
 .mods .remove, .mods .edit {
 	font-size: 28px;
+}
+
+.mods .remove {
 	color: red;
+}
+
+.mods .edit {
+	color: darkblue;
 }
 
 .footer {
