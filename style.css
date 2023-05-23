@@ -239,6 +239,50 @@ input:focus {
 	color: darkblue;
 }
 
+.modal-backdrop {
+	/* visibility: hidden; */
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.507);
+}
+
+.modal {
+	height: 30%;
+	width: 25%;
+	background-color: var(--beige);
+	border-radius: 10px;
+	box-shadow: 0px 5px 5px black;
+}
+
+.edit-form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.edit-form input {
+	margin: 5px;
+	padding: 2px 10px;
+	height: 40px;
+	font-size: 20px;
+	background-color: var(--beige0);
+	color: black;
+}
+
+.edit-form button {
+	height: 40px;
+	width: 120px;
+	font-size: 20px;
+	border-radius: 20px;
+	background-color: rgb(61, 61, 61);
+	color: white;
+}
+
 .footer {
 	display: flex;
 	justify-content: center;
