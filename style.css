@@ -240,7 +240,7 @@ input:focus {
 }
 
 .modal-backdrop {
-	/* visibility: hidden; */
+	visibility: hidden;
 	height: 100%;
 	width: 100%;
 	position: absolute;
