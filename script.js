@@ -7,6 +7,12 @@ let bookStatus = document.querySelector('#bookStatus');
 let addBookBtn = document.querySelector('#submitForm');
 let libraryDisplay = document.querySelector('.display');
 let statusButtons;
+let modalBackdrop = document.querySelector('.modal-backdrop');
+let modal = document.querySelector('.modal');
+let editBookTitle = document.querySelector('#edit-bookTitle');
+let editBookAuthor = document.querySelector('#edit-bookAuthor');
+let editBookPages = document.querySelector('#edit-bookPages');
+let editDone = document.querySelector('#edit-submitForm');
 
 let myLibrary = [{title: "Harry Potter and the Philosopher's Stone", author: 'J.K. Rowling', pages: '223', status: 'read'}, {title: "Brothers Karamazov", author: 'Fyodor Dostoevsky', pages: '840', status: 'unread'}];
 
@@ -41,6 +47,9 @@ function reset () {
 	bookAuthor.value = '';
 	bookPages.value = '';
 	bookStatus.checked = false;
+	editBookTitle.value = '';
+	editBookAuthor.value = '';
+	editBookPages.value = '';
 }
 
 function Book(title, author, pages, status) {
@@ -77,6 +86,23 @@ function populateDisplay () {
 			} else if (e.target.classList.contains('remove') || e.target.classList.contains('fa-trash-alt')) {
 				myLibrary.splice(i,1);
 				libraryDisplay.removeChild(libraryDisplay.children[i])
+			} else if (e.target.classList.contains('edit') || e.target.classList.contains('fa-pen-nib')) {
+				modalBackdrop.style.visibility = 'visible';
+				modalBackdrop.addEventListener('click', (e) => {
+					if (e.target !== modal) {
+						modalBackdrop.style.visibility = 'hidden';
+					}
+				})
+				editDone.addEventListener('click', () => {
+					myLibrary[i].title = editBookTitle.value;
+					myLibrary[i].author = editBookAuthor.value;
+					myLibrary[i].pages = editBookPages.value;
+					newCard = createCard(myLibrary[i]);
+					libraryDisplay.replaceChild(newCard, libraryDisplay.childNodes[i]);
+					modalBackdrop.style.visibility = 'hidden';
+					event.preventDefault();
+					reset();	
+				})
 			}
 		})
 	};
@@ -120,3 +146,7 @@ function createCard (x) {
 	card.appendChild(mods)
 	return card;
 }
+
+// window.addEventListener('click', (e) => {
+// 	console.log(e.target)
+// })
