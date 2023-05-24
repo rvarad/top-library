@@ -38,9 +38,9 @@ function enterStatus() {
 		bookStatus.setAttribute('value', 'unread');
 		return bookStatus.value;
 	} else {
-		console.log('error with the change status function.')
-	}
-}
+		console.log('error with the change status function.');
+	};
+};
 
 function reset() {
 	bookTitle.value = '';
@@ -63,7 +63,7 @@ function Book(title, author, pages, status) {
 function addBookToLibrary(x) {
 	myLibrary.unshift(x);
 	return myLibrary;
-}
+};
 
 function populateDisplay() {
 	libraryDisplay.innerHTML = null;
@@ -82,20 +82,20 @@ function populateDisplay() {
 					e.target.textContent = 'Read';
 					e.target.classList.remove('unread');
 					e.target.classList.add('read');
-				}
+				};
 			} else if (e.target.classList.contains('remove') || e.target.classList.contains('fa-trash-alt')) {
 				myLibrary.splice(i, 1);
-				libraryDisplay.removeChild(libraryDisplay.children[i])
+				libraryDisplay.removeChild(libraryDisplay.children[i]);
 			} else if (e.target.classList.contains('edit') || e.target.classList.contains('fa-pen-nib')) {
 				modalBackdrop.style.visibility = 'visible';
-				editBookTitle.value = myLibrary[i].title
-				editBookAuthor.value = myLibrary[i].author
-				editBookPages.value = myLibrary[i].pages
+				editBookTitle.value = myLibrary[i].title;
+				editBookAuthor.value = myLibrary[i].author;
+				editBookPages.value = myLibrary[i].pages;
 				modalBackdrop.addEventListener('click', (e) => {
 					if (e.target !== modal && e.target === modalBackdrop) {
 						modalBackdrop.style.visibility = 'hidden';
-					}
-				})
+					};
+				});
 				editDone.addEventListener('click', () => {
 					myLibrary[i].title = editBookTitle.value;
 					myLibrary[i].author = editBookAuthor.value;
@@ -105,50 +105,50 @@ function populateDisplay() {
 					newCard.pages.textContent = myLibrary[i].pages + ' Pages';
 					modalBackdrop.style.visibility = 'hidden';
 					event.preventDefault();
-					console.log(editBookTitle)
-					console.log(editBookAuthor)
-					console.log(editBookPages)
-				})
-			}
-		})
+					console.log(editBookTitle);
+					console.log(editBookAuthor);
+					console.log(editBookPages);
+				});
+			};
+		});
 	};
-}
+};
 
 function createCard(x) {
 	let card = document.createElement('div');
 	card.classList.add('card');
 	let title = document.createElement('p');
 	title.classList.add('title');
-	title.textContent = `"${x.title}"`
+	title.textContent = `"${x.title}"`;
 	card.appendChild(title);
 	let author = document.createElement('p');
 	author.classList.add('author');
-	author.textContent = x.author
+	author.textContent = x.author;
 	card.appendChild(author);
-	let pages = document.createElement('p')
-	pages.classList.add('pages')
-	pages.textContent = x.pages + ' Pages'
-	card.appendChild(pages)
-	let mods = document.createElement('div')
+	let pages = document.createElement('p');
+	pages.classList.add('pages');
+	pages.textContent = x.pages + ' Pages';
+	card.appendChild(pages);
+	let mods = document.createElement('div');
 	mods.classList.add('mods');
-	let status = document.createElement('button')
-	status.classList.add('status')
+	let status = document.createElement('button');
+	status.classList.add('status');
 	if (x.status === 'read') {
-		status.textContent = 'Read'
-		status.classList.add('read')
+		status.textContent = 'Read';
+		status.classList.add('read');
 	} else {
-		status.textContent = 'Unread'
-		status.classList.add('unread')
-	}
-	mods.appendChild(status)
-	let remove = document.createElement('button')
-	remove.innerHTML = '<i class="fas fa-trash-alt" style="-webkit-text-stroke-width: 0.5px;-webkit-text-stroke-color: black;"></i>'
-	remove.classList.add('remove')
-	mods.appendChild(remove)
-	let edit = document.createElement('button')
-	edit.innerHTML = '<i class="fas fa-pen-nib" style="-webkit-text-stroke-width: 0.5px;-webkit-text-stroke-color: black;"></i>'
-	edit.classList.add('edit')
-	mods.appendChild(edit)
-	card.appendChild(mods)
+		status.textContent = 'Unread';
+		status.classList.add('unread');
+	};
+	mods.appendChild(status);
+	let remove = document.createElement('button');
+	remove.innerHTML = '<i class="fas fa-trash-alt" style="-webkit-text-stroke-width: 0.5px-webkit-text-stroke-color: black"></i>';
+	remove.classList.add('remove');
+	mods.appendChild(remove);
+	let edit = document.createElement('button');
+	edit.innerHTML = '<i class="fas fa-pen-nib" style="-webkit-text-stroke-width: 0.5px-webkit-text-stroke-color: black"></i>';
+	edit.classList.add('edit');
+	mods.appendChild(edit);
+	card.appendChild(mods);
 	return { card, title, author, pages };
-}
+};
