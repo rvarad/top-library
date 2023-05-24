@@ -88,9 +88,11 @@ function populateDisplay() {
 				libraryDisplay.removeChild(libraryDisplay.children[i])
 			} else if (e.target.classList.contains('edit') || e.target.classList.contains('fa-pen-nib')) {
 				modalBackdrop.style.visibility = 'visible';
+				editBookTitle.value = myLibrary[i].title
+				editBookAuthor.value = myLibrary[i].author
+				editBookPages.value = myLibrary[i].pages
 				modalBackdrop.addEventListener('click', (e) => {
 					if (e.target !== modal && e.target === modalBackdrop) {
-						console.log(e.target);
 						modalBackdrop.style.visibility = 'hidden';
 					}
 				})
@@ -101,58 +103,16 @@ function populateDisplay() {
 					newCard.title.textContent = `"${myLibrary[i].title}"`;
 					newCard.author.textContent = myLibrary[i].author;
 					newCard.pages.textContent = myLibrary[i].pages + ' Pages';
-					// newCard = createCard(myLibrary[i]);
-					// libraryDisplay.replaceChild(newCard.card, libraryDisplay.childNodes[i]);
-					// (e) => {modifications(e,i)};
 					modalBackdrop.style.visibility = 'hidden';
 					event.preventDefault();
-					reset();
+					console.log(editBookTitle)
+					console.log(editBookAuthor)
+					console.log(editBookPages)
 				})
 			}
 		})
 	};
 }
-
-// function modifications(e, i) {
-// 	if (e.target.classList.contains('status')) {
-// 		if (e.target.classList.contains('read')) {
-// 			myLibrary[i].status = 'unread';
-// 			e.target.textContent = 'Unread';
-// 			e.target.classList.remove('read');
-// 			e.target.classList.add('unread');
-// 		} else {
-// 			myLibrary[i].status = 'read';
-// 			e.target.textContent = 'Read';
-// 			e.target.classList.remove('unread');
-// 			e.target.classList.add('read');
-// 		}
-// 	} else if (e.target.classList.contains('remove') || e.target.classList.contains('fa-trash-alt')) {
-// 		myLibrary.splice(i, 1);
-// 		libraryDisplay.removeChild(libraryDisplay.children[i])
-// 	} else if (e.target.classList.contains('edit') || e.target.classList.contains('fa-pen-nib')) {
-// 		modalBackdrop.style.visibility = 'visible';
-// 		modalBackdrop.addEventListener('click', (e) => {
-// 			if (e.target !== modal && e.target === modalBackdrop) {
-// 				console.log(e.target);
-// 				modalBackdrop.style.visibility = 'hidden';
-// 			}
-// 		})
-// 		editDone.addEventListener('click', () => {
-// 			myLibrary[i].title = editBookTitle.value;
-// 			myLibrary[i].author = editBookAuthor.value;
-// 			myLibrary[i].pages = editBookPages.value;
-// 			newCard.title = myLibrary[i].title;
-// 			newCard.author = myLibrary[i].author;
-// 			newCard.pages = myLibrary[i].pages;
-// 			// newCard = createCard(myLibrary[i]);
-// 			// libraryDisplay.replaceChild(newCard.card, libraryDisplay.childNodes[i]);
-// 			// (e) => {modifications(e,i)};
-// 			modalBackdrop.style.visibility = 'hidden';
-// 			event.preventDefault();
-// 			reset();
-// 		})
-// 	}
-// }
 
 function createCard(x) {
 	let card = document.createElement('div');
@@ -192,7 +152,3 @@ function createCard(x) {
 	card.appendChild(mods)
 	return { card, title, author, pages };
 }
-
-// window.addEventListener('click', (e) => {
-// 	console.log(e.target)
-// })|| e.target  !== editBookTitle || e.target !== editBookAuthor || e.target !== editBookPages
