@@ -14,7 +14,7 @@ let editBookAuthor = document.querySelector('#edit-bookAuthor');
 let editBookPages = document.querySelector('#edit-bookPages');
 let editDone = document.querySelector('#edit-submitForm');
 
-let myLibrary = [{title: "Harry Potter and the Philosopher's Stone", author: 'J.K. Rowling', pages: '223', status: 'read'}, {title: "Brothers Karamazov", author: 'Fyodor Dostoevsky', pages: '840', status: 'unread'}];
+let myLibrary = [{ title: "Harry Potter and the Philosopher's Stone", author: 'J.K. Rowling', pages: '223', status: 'read' }, { title: "Brothers Karamazov", author: 'Fyodor Dostoevsky', pages: '840', status: 'unread' }];
 
 addBookBtn.addEventListener('click', () => {
 	let temp = null;
@@ -30,7 +30,7 @@ addBookBtn.addEventListener('click', () => {
 	reset();
 });
 
-function enterStatus () {
+function enterStatus() {
 	if (bookStatus.checked) {
 		bookStatus.setAttribute('value', 'read');
 		return bookStatus.value;
@@ -42,7 +42,7 @@ function enterStatus () {
 	}
 }
 
-function reset () {
+function reset() {
 	bookTitle.value = '';
 	bookAuthor.value = '';
 	bookPages.value = '';
@@ -54,23 +54,23 @@ function reset () {
 
 function Book(title, author, pages, status) {
 	this.title = title,
-	this.author = author,
-	this.pages = pages,
-	this.status = status,
-	this.info = () => {return {title, author, pages, status} }
+		this.author = author,
+		this.pages = pages,
+		this.status = status,
+		this.info = () => { return { title, author, pages, status } }
 };
 
-function addBookToLibrary (x) {
+function addBookToLibrary(x) {
 	myLibrary.unshift(x);
 	return myLibrary;
 }
 
-function populateDisplay () {
+function populateDisplay() {
 	libraryDisplay.innerHTML = null;
 	for (let i = 0; i < myLibrary.length; i++) {
 		let newCard = createCard(myLibrary[i]);
-		libraryDisplay.appendChild(newCard);
-		newCard.addEventListener('click', (e) => {
+		libraryDisplay.appendChild(newCard.card);
+		newCard.card.addEventListener('click', (e) => {
 			if (e.target.classList.contains('status')) {
 				if (e.target.classList.contains('read')) {
 					myLibrary[i].status = 'unread';
@@ -84,12 +84,13 @@ function populateDisplay () {
 					e.target.classList.add('read');
 				}
 			} else if (e.target.classList.contains('remove') || e.target.classList.contains('fa-trash-alt')) {
-				myLibrary.splice(i,1);
+				myLibrary.splice(i, 1);
 				libraryDisplay.removeChild(libraryDisplay.children[i])
 			} else if (e.target.classList.contains('edit') || e.target.classList.contains('fa-pen-nib')) {
 				modalBackdrop.style.visibility = 'visible';
 				modalBackdrop.addEventListener('click', (e) => {
-					if (e.target !== modal) {
+					if (e.target !== modal && e.target === modalBackdrop) {
+						console.log(e.target);
 						modalBackdrop.style.visibility = 'hidden';
 					}
 				})
@@ -97,18 +98,63 @@ function populateDisplay () {
 					myLibrary[i].title = editBookTitle.value;
 					myLibrary[i].author = editBookAuthor.value;
 					myLibrary[i].pages = editBookPages.value;
-					newCard = createCard(myLibrary[i]);
-					libraryDisplay.replaceChild(newCard, libraryDisplay.childNodes[i]);
+					newCard.title.textContent = `"${myLibrary[i].title}"`;
+					newCard.author.textContent = myLibrary[i].author;
+					newCard.pages.textContent = myLibrary[i].pages + ' Pages';
+					// newCard = createCard(myLibrary[i]);
+					// libraryDisplay.replaceChild(newCard.card, libraryDisplay.childNodes[i]);
+					// (e) => {modifications(e,i)};
 					modalBackdrop.style.visibility = 'hidden';
 					event.preventDefault();
-					reset();	
+					reset();
 				})
 			}
 		})
 	};
 }
 
-function createCard (x) {
+// function modifications(e, i) {
+// 	if (e.target.classList.contains('status')) {
+// 		if (e.target.classList.contains('read')) {
+// 			myLibrary[i].status = 'unread';
+// 			e.target.textContent = 'Unread';
+// 			e.target.classList.remove('read');
+// 			e.target.classList.add('unread');
+// 		} else {
+// 			myLibrary[i].status = 'read';
+// 			e.target.textContent = 'Read';
+// 			e.target.classList.remove('unread');
+// 			e.target.classList.add('read');
+// 		}
+// 	} else if (e.target.classList.contains('remove') || e.target.classList.contains('fa-trash-alt')) {
+// 		myLibrary.splice(i, 1);
+// 		libraryDisplay.removeChild(libraryDisplay.children[i])
+// 	} else if (e.target.classList.contains('edit') || e.target.classList.contains('fa-pen-nib')) {
+// 		modalBackdrop.style.visibility = 'visible';
+// 		modalBackdrop.addEventListener('click', (e) => {
+// 			if (e.target !== modal && e.target === modalBackdrop) {
+// 				console.log(e.target);
+// 				modalBackdrop.style.visibility = 'hidden';
+// 			}
+// 		})
+// 		editDone.addEventListener('click', () => {
+// 			myLibrary[i].title = editBookTitle.value;
+// 			myLibrary[i].author = editBookAuthor.value;
+// 			myLibrary[i].pages = editBookPages.value;
+// 			newCard.title = myLibrary[i].title;
+// 			newCard.author = myLibrary[i].author;
+// 			newCard.pages = myLibrary[i].pages;
+// 			// newCard = createCard(myLibrary[i]);
+// 			// libraryDisplay.replaceChild(newCard.card, libraryDisplay.childNodes[i]);
+// 			// (e) => {modifications(e,i)};
+// 			modalBackdrop.style.visibility = 'hidden';
+// 			event.preventDefault();
+// 			reset();
+// 		})
+// 	}
+// }
+
+function createCard(x) {
 	let card = document.createElement('div');
 	card.classList.add('card');
 	let title = document.createElement('p');
@@ -144,9 +190,9 @@ function createCard (x) {
 	edit.classList.add('edit')
 	mods.appendChild(edit)
 	card.appendChild(mods)
-	return card;
+	return { card, title, author, pages };
 }
 
 // window.addEventListener('click', (e) => {
 // 	console.log(e.target)
-// })
+// })|| e.target  !== editBookTitle || e.target !== editBookAuthor || e.target !== editBookPages
