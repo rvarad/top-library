@@ -16,19 +16,29 @@ let editDone = document.querySelector('#edit-submitForm');
 
 let myLibrary = [{ title: "Harry Potter and the Philosopher's Stone", author: 'J.K. Rowling', pages: '223', status: 'read' }, { title: "Brothers Karamazov", author: 'Fyodor Dostoevsky', pages: '840', status: 'unread' }];
 
-addBookBtn.addEventListener('click', () => {
-	let temp = null;
-	let title = bookTitle.value;
-	let author = bookAuthor.value;
-	let pages = bookPages.value;
-	let status = enterStatus();
-	temp = new Book(title, author, pages, status);
-	addBookToLibrary(temp.info());
-	populateDisplay();
-	console.log(temp);
-	event.preventDefault();
-	reset();
-});
+if (bookTitle.value && bookAuthor.value && bookPages.value) {
+	addBookBtn.addEventListener('click', () => {
+		let temp = null;
+		let title = bookTitle.value;
+		let author = bookAuthor.value;
+		let pages = bookPages.value;
+		let status = enterStatus();
+		temp = new Book(title, author, pages, status);
+		addBookToLibrary(temp.info());
+		populateDisplay();
+		console.log(temp);
+		event.preventDefault();
+		reset();
+	});
+};
+
+function Book(title, author, pages, status) {
+	this.title = title,
+		this.author = author,
+		this.pages = pages,
+		this.status = status,
+		this.info = () => { return { title, author, pages, status } }
+};
 
 function enterStatus() {
 	if (bookStatus.checked) {
@@ -40,24 +50,6 @@ function enterStatus() {
 	} else {
 		console.log('error with the change status function.');
 	};
-};
-
-function reset() {
-	bookTitle.value = '';
-	bookAuthor.value = '';
-	bookPages.value = '';
-	bookStatus.checked = false;
-	editBookTitle.value = '';
-	editBookAuthor.value = '';
-	editBookPages.value = '';
-}
-
-function Book(title, author, pages, status) {
-	this.title = title,
-		this.author = author,
-		this.pages = pages,
-		this.status = status,
-		this.info = () => { return { title, author, pages, status } }
 };
 
 function addBookToLibrary(x) {
@@ -88,30 +80,30 @@ function populateDisplay() {
 				libraryDisplay.removeChild(libraryDisplay.children[i]);
 			} else if (e.target.classList.contains('edit') || e.target.classList.contains('fa-pen-nib')) {
 				modalBackdrop.style.visibility = 'visible';
-				editBookTitle.value = myLibrary[i].title;
-				editBookAuthor.value = myLibrary[i].author;
-				editBookPages.value = myLibrary[i].pages;
+				// editBookTitle.value = myLibrary[i].title;
+				// editBookAuthor.value = myLibrary[i].author;
+				// editBookPages.value = myLibrary[i].pages;
 				modalBackdrop.addEventListener('click', (e) => {
 					if (e.target !== modal && e.target === modalBackdrop) {
 						modalBackdrop.style.visibility = 'hidden';
 					};
 				});
-				editDone.addEventListener('click', () => {
-					myLibrary[i].title = editBookTitle.value;
-					myLibrary[i].author = editBookAuthor.value;
-					myLibrary[i].pages = editBookPages.value;
-					newCard.title.textContent = `"${myLibrary[i].title}"`;
-					newCard.author.textContent = myLibrary[i].author;
-					newCard.pages.textContent = myLibrary[i].pages + ' Pages';
-					modalBackdrop.style.visibility = 'hidden';
-					event.preventDefault();
-					console.log(editBookTitle);
-					console.log(editBookAuthor);
-					console.log(editBookPages);
-				});
+				if (editBookTitle.value && editBookAuthor.value && editBookPages.value) {
+					editDone.addEventListener('click', () => {
+						myLibrary[i].title = editBookTitle.value;
+						myLibrary[i].author = editBookAuthor.value;
+						myLibrary[i].pages = editBookPages.value;
+						newCard.title.textContent = `"${myLibrary[i].title}"`;
+						newCard.author.textContent = myLibrary[i].author;
+						newCard.pages.textContent = myLibrary[i].pages + ' Pages';
+						modalBackdrop.style.visibility = 'hidden';
+						event.preventDefault();
+					});
+				};
 			};
 		});
 	};
+	reset();
 };
 
 function createCard(x) {
@@ -142,13 +134,23 @@ function createCard(x) {
 	};
 	mods.appendChild(status);
 	let remove = document.createElement('button');
-	remove.innerHTML = '<i class="fas fa-trash-alt" style="-webkit-text-stroke-width: 0.5px-webkit-text-stroke-color: black"></i>';
+	remove.innerHTML = '<i class="fas fa-trash-alt" style="-webkit-text-stroke-width: 0.5px; -webkit-text-stroke-color: black"></i>';
 	remove.classList.add('remove');
 	mods.appendChild(remove);
 	let edit = document.createElement('button');
-	edit.innerHTML = '<i class="fas fa-pen-nib" style="-webkit-text-stroke-width: 0.5px-webkit-text-stroke-color: black"></i>';
+	edit.innerHTML = '<i class="fas fa-pen-nib" style="-webkit-text-stroke-width: 0.5px; -webkit-text-stroke-color: black"></i>';
 	edit.classList.add('edit');
 	mods.appendChild(edit);
 	card.appendChild(mods);
 	return { card, title, author, pages };
+};
+
+function reset() {
+	bookTitle.value = '';
+	bookAuthor.value = '';
+	bookPages.value = '';
+	bookStatus.checked = false;
+	editBookTitle.value = '';
+	editBookAuthor.value = '';
+	editBookPages.value = '';
 };
