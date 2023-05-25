@@ -15,18 +15,18 @@
 	<div class="main">
 		<div class="left">
 			<div class="header">
-				<h1><i class="fas fa-book-reader" style="color: brown;-webkit-text-stroke-width: 0.5px;-webkit-text-stroke-color: black;text-shadow: 0px 0px 10px;"></i> <span>LIBRARY</span></h1>
+				<h1><i class="fas fa-book-reader" style="color: brown;-webkit-text-stroke-width: 0.5px; -webkit-text-stroke-color: black; text-shadow: 0px 0px 10px;"></i> <span>LIBRARY</span></h1>
 			</div>
 			<form class="entryform">
 				<div class="formdata">
 					<div class="inputfield">
-						<input type="text" name="title of the book" id="bookTitle" placeholder="Title of the book" value="" />
+						<input type="text" name="title of the book" id="bookTitle" placeholder="Title of the book" value="" required/>
 					</div>
 					<div class="inputfield">
-						<input type="text" name="author of the book" id="bookAuthor" placeholder="Author of the book" value="" />
+						<input type="text" name="author of the book" id="bookAuthor" placeholder="Author of the book" value="" required/>
 					</div>
 					<div class="inputfield">
-						<input type="text" name="total number of pages" id="bookPages" placeholder="Total pages in the book" value="" />
+						<input type="number" name="total number of pages" id="bookPages" placeholder="Total pages in the book" value="" required/>
 					</div>
 					<div class="inputfield" id="checkBox">
 						<input type="checkbox" name="read status" id="bookStatus" value="" unchecked/><label for="bookStatus">Read status of the book</label>
@@ -44,9 +44,9 @@
 	<div class="modal-backdrop">
 		<div class="modal">
 			<form class="edit-form">
-				<input type="text" name="title of the book" id="edit-bookTitle" placeholder="Title of the book" value="">
-				<input type="text" name="author of the book" id="edit-bookAuthor" placeholder="Author of the book" value="">
-				<input type="text" name="total number of pages" id="edit-bookPages" placeholder="Total pages in the book" value="">
+				<input type="text" name="title of the book" id="edit-bookTitle" placeholder="Title of the book" value="" required>
+				<input type="text" name="author of the book" id="edit-bookAuthor" placeholder="Author of the book" value="" required>
+				<input type="number" name="total number of pages" id="edit-bookPages" placeholder="Total pages in the book" value="" required>
 				<button type="submit" id="edit-submitForm">Done</button>
 			</form>
 		</div>
